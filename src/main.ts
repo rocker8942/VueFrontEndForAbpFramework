@@ -4,8 +4,16 @@ import router from './router'
 
 import './assets/main.css'
 
-const app = createApp(App)
+import idsrvAuth from './idsrvAuth'
 
-app.use(router)
+idsrvAuth.startup().then(ok => {
+  if (ok) {
+    const app = createApp(App).use(router)
+    // a little something extra
+    app.config.globalProperties.$oidc = idsrvAuth
+    app.mount('#app')
+  } else {
+    console.log('Startup was not ok')
+  }
+})
 
-app.mount('#app')

@@ -6,7 +6,7 @@ import Header from './components/Header.vue'
 <template>
   <header>
     <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-
+    <a href="#" @click.prevent="$oidc.signOut" v-if="$oidc.isAuthenticated">Signout</a>
     <div class="wrapper">
       <Header msg="MarketWatch" />
 
